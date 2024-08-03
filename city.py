@@ -1,22 +1,20 @@
-def recommend_places(destination):
-    recommendations = {
-        "서울": ["경복궁", "명동", "남산타워", "인사동", "한강"],
-        "부산": ["해운대", "광안리", "태종대", "감천문화마을", "자갈치 시장"],
-        "제주도": ["한라산", "성산 일출봉", "섭지코지", "우도", "협재 해수욕장"],
-        "경주": ["불국사", "석굴암", "첨성대", "경주월드", "안압지"],
-        "인천": ["월미도", "차이나타운", "송도 센트럴파크", "인천대교", "연안부두"]
-    }
+def calculate_final_score(midterm, final, performance):
+    # 각 점수의 반영 비율
+    midterm_weight = 0.30
+    final_weight = 0.30
+    performance_weight = 1.0
     
-    return recommendations.get(destination, "해당 관광지에 대한 정보가 없습니다. 다른 관광지를 입력해 주세요.")
+    # 최종 점수 계산
+    final_score = (midterm * midterm_weight) + (final * final_weight) + (performance * performance_weight)
+    return final_score
 
-# 사용자 입력
-destination = input("관광지를 입력하세요: ")
-places_to_visit = recommend_places(destination)
+# 사용자 입력 받기
+midterm_score = float(input("중간고사 성적을 입력하세요 (0-100): "))
+final_score = float(input("기말고사 성적을 입력하세요 (0-100): "))
+performance_score = float(input("수행평가 점수를 입력하세요 (0-100): "))
 
-# 추천 결과 출력
-if isinstance(places_to_visit, list):
-    print(f"{destination}에서 가볼 만한 곳:")
-    for place in places_to_visit:
-        print(f"- {place}")
-else:
-    print(places_to_visit)
+# 최종 점수 계산
+final_score = calculate_final_score(midterm_score, final_score, performance_score)
+
+# 결과 출력
+print(f"100점 만점에 해당하는 최종 점수는: {final_score:.2f}점 입니다.")
